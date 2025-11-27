@@ -1,0 +1,374 @@
+
+.feedback-page {
+  max-width: 1100px;
+  margin: 36px auto;
+  padding: 28px;
+  background: linear-gradient(180deg, rgba(8,12,22,0.72), rgba(18,26,46,0.92));
+  border-radius: 14px;
+  box-shadow: 0 18px 48px rgba(0,0,0,0.55);
+  color: #dff8f9;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.feedback-page h2 {
+  font-family: 'Orbitron', Arial, sans-serif;
+  color: #e94560;
+  margin: 0 0 6px;
+  letter-spacing: 0.6px;
+  font-size: 1.75rem;
+}
+.feedback-page .muted {
+  color: rgba(223,248,249,0.72);
+  margin-bottom: 18px;
+}
+
+.forum-list {
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  max-height: 50vh;
+  overflow:auto;
+  padding:6px;
+  margin-bottom: 24px;
+}
+
+.rating-radios {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+.rating-radios label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.02);
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.03);
+  color: #dff8f9;
+  font-weight: 700;
+  cursor: pointer;
+}
+.rating-radios input[type="radio"] {
+  accent-color: #0fcece;
+  transform: scale(1.05);
+}
+.rating-radios .r-desc {
+  font-weight: 400;
+  color: rgba(223,248,249,0.7);
+  margin-left: 6px;
+  font-size: 0.86rem;
+}
+
+@media (max-width: 560px) {
+  .rating-radios { gap: 8px; }
+  .rating-radios label { padding: 8px; font-size: 0.95rem; }
+}
+
+.forum-post {
+  background: linear-gradient(180deg, rgba(18,24,40,0.52), rgba(22,32,52,0.70));
+  border-radius: 10px;
+  padding: 14px 16px;
+  border-left: 4px solid rgba(15,206,206,0.08);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.32);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.forum-post:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 42px rgba(0,0,0,0.45);
+}
+.forum-post .title {
+  font-family: 'Orbitron', Arial, sans-serif;
+  color: #0fcece;
+  font-weight:700;
+  margin-bottom:6px;
+  font-size:1.05rem;
+}
+.forum-post .meta {
+  color: rgba(223,248,249,0.78);
+  font-size:0.86rem;
+  margin-bottom:8px;
+}
+.forum-post .body {
+  color: #e6eef0;
+  line-height:1.6;
+  font-size:0.98rem;
+}
+
+.forum-new {
+  width:100%;
+  background: rgba(16,22,36,0.66);
+  padding:18px;
+  border-radius:12px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.36);
+}
+
+.feedback-form label {
+  display:block;
+  font-weight:600;
+  color:#cfeff0;
+  margin-top:12px;
+  font-size:0.95rem;
+}
+.feedback-form .req { color:#e94560; margin-left:6px; font-weight:700; }
+
+.feedback-form input,
+.feedback-form textarea,
+.feedback-form select {
+  width:100%;
+  padding:10px 12px;
+  margin-top:8px;
+  border-radius:8px;
+  border:1px solid rgba(255,255,255,0.04);
+  background: rgba(255,255,255,0.02);
+  color:#eef9fa;
+  font-size:0.96rem;
+  transition: box-shadow .16s ease, border-color .16s ease, transform .08s ease;
+}
+.feedback-form input::placeholder,
+.feedback-form textarea::placeholder { color: rgba(255,255,255,0.34); }
+.feedback-form input:focus,
+.feedback-form textarea:focus,
+.feedback-form select:focus {
+  outline:none;
+  border-color: rgba(15,206,206,0.36);
+  box-shadow: 0 10px 26px rgba(15,206,206,0.06);
+  transform: translateY(-1px);
+}
+
+.field-opts {
+  border: none; 
+  padding: 0;
+  margin: 12px 0;
+  background: transparent;
+  box-shadow: none;
+}
+.field-opts legend {
+  font-weight: 700;
+  color: #cfeff0;
+  margin-bottom: 8px;
+  padding: 0;
+  font-size: 0.98rem;
+}
+.field-opts label { 
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: 18px;
+  margin-bottom: 8px;
+  color: #dff8f9;
+  font-size: 0.95rem;
+  background: transparent;
+  padding: 6px 8px;
+  border-radius: 8px;
+}
+.field-opts input { 
+  margin-right:8px; accent-color: #0fcece; 
+}
+
+/* actions row */
+.feedback-actions { display:flex; gap:12px; align-items:center; margin-top:12px; }
+.fb-status { color:#cfeff0; font-size:0.95rem; }
+
+/* submit button */
+.primary-action {
+  background: linear-gradient(135deg, #e94560, #0fcece);
+  border: none;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  font-family: 'Orbitron', Arial, sans-serif;
+}
+.primary-action:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(233, 69, 96, 0.3);
+}
+.primary-action:active {
+  transform: translateY(0);
+}
+
+#thank-you { color:#cfeff0; margin-top:12px; font-weight:600; }
+
+/* mobile friendly design */
+@media screen and (max-width: 768px) {
+  .feedback-page { 
+    padding: 20px 15px; 
+    margin: 15px 10px;
+    border-radius: 10px;
+  }
+  
+  .feedback-page h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .feedback-page .muted {
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+  }
+  
+  .forum-list { 
+    max-height: none; 
+    padding: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .forum-post {
+    padding: 12px;
+    margin-bottom: 10px;
+  }
+  
+  .forum-post .title { 
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+  }
+  
+  .forum-post .meta {
+    font-size: 0.8rem;
+    margin-bottom: 8px;
+  }
+  
+  .forum-post .body {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+  
+  .forum-new h3 {
+    font-size: 1.3rem;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  
+  .feedback-form label {
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+  }
+  
+  .feedback-form input[type="text"],
+  .feedback-form input[type="email"],
+  .feedback-form textarea,
+  .feedback-form select {
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 6px;
+    margin-bottom: 12px;
+  }
+  
+  .rating-radios {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  
+  .rating-radios label {
+    justify-content: center;
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+  
+  .field-opts {
+    padding: 12px;
+    border-radius: 8px;
+    margin-top: 10px;
+  }
+  
+  .field-opts legend {
+    font-size: 0.9rem;
+    padding: 5px 8px;
+  }
+  
+  .field-opts label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.85rem;
+  }
+  
+  .feedback-actions {
+    text-align: center;
+    margin-top: 15px;
+  }
+  
+  .primary-action {
+    width: 100%;
+    max-width: 250px;
+    padding: 14px 20px;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+  }
+  
+  .fb-status {
+    font-size: 0.9rem;
+    margin-top: 10px;
+    display: block;
+  }
+}
+
+/* this is mobile friendly for 480px and below */
+@media screen and (max-width: 480px) {
+  .feedback-page { 
+    padding: 15px 10px; 
+    margin: 10px 5px;
+  }
+  
+  .feedback-page h2 {
+    font-size: 1.3rem;
+  }
+  
+  .forum-post {
+    padding: 10px;
+  }
+  
+  .forum-post .title { 
+    font-size: 0.9rem;
+  }
+  
+  .forum-post .meta {
+    font-size: 0.75rem;
+  }
+  
+  .forum-post .body {
+    font-size: 0.85rem;
+  }
+  
+  .forum-new h3 {
+    font-size: 1.2rem;
+  }
+  
+  .feedback-form label {
+    font-size: 0.9rem;
+  }
+  
+  .feedback-form input[type="text"],
+  .feedback-form input[type="email"],
+  .feedback-form textarea {
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  .rating-radios label {
+    padding: 8px;
+    font-size: 0.85rem;
+  }
+  
+  .field-opts {
+    padding: 10px;
+  }
+  
+  .field-opts legend {
+    font-size: 0.85rem;
+  }
+  
+  .primary-action {
+    padding: 12px 18px;
+    font-size: 1rem;
+  }
+}

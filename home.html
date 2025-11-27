@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Math Duel Arena - Home</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="nav.css">
+  <link rel="stylesheet" href="home.css"> 
+  
+  <!-- an external library was used for the scroll animations -->
+  <!-- i got this from: https://github.com/michalsnik/aos -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+  <!-- using particles.js library for the animated background -->
+  <div id="particles-js"></div>
+
+  <header>
+    <nav>
+      <div class="logo-container">
+        <img src="clashofdigits.png" alt="Logo" class="logo">
+      </div>
+      <ul>
+        <li><a href="home.html" class="active">Home</a></li>
+        <li><a href="player.html">Player Input</a></li>
+        <li><a href="arena.html">Game Arena</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="leaderboard.html">Leaderboard</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1 data-aos="fade-down" data-aos-delay="100">Clash of Digits</h1>
+      <p data-aos="fade-up" data-aos-delay="200">Challenge your friends and test your math skills in exciting duels!</p>
+      <a href="player.html" class="primary-button" data-aos="zoom-in" data-aos-delay="300">Start a Game</a>
+    </div>
+  </section>
+
+  <main>
+    <section class="info-section" data-aos="fade-up" data-aos-delay="400">
+      <div class="container">
+        <h2 data-aos="slide-down" data-aos-delay="500">How to Play</h2>
+        <p data-aos="fade-in" data-aos-delay="600">Challenge your friend in a thrilling math duel! Follow these simple steps:</p>
+        <div class="steps-container">
+          <div class="step">
+            <div class="step-number">1</div>
+            <h3>Enter Player Names</h3>
+            <p>Input names for both players to personalize your duel experience.</p>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <h3>Choose Difficulty</h3>
+            <p>Select from Easy, Medium, or Hard difficulty levels.</p>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <h3>Solve Math Problems</h3>
+            <p>Answer math questions correctly to earn points.</p>
+          </div>
+          <div class="step">
+            <div class="step-number">4</div>
+            <h3>Win the Duel</h3>
+            <p>The player with the highest score when time runs out wins!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Math Duel Arena. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- javaScript libraries for animations -->
+  <!-- this makes elements animate when you scroll -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  
+  <!-- this creates the moving background effect -->
+  <!-- found it on: https://github.com/VincentGarreau/particles.js/ -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  
+  <!-- this handles the background music -->
+  <!-- got it from: https://github.com/goldfire/howler.js -->
+  <script src="https://cdn.jsdelivr.net/npm/howler@2.2.3/dist/howler.min.js"></script>
+  
+  <!-- my music system for the game -->
+  <!-- music from pixabay-->
+  <script src="game-music.js"></script>
+  
+  <script>
+    // setting up animations when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      
+      // this makes the scroll animations work, i used external help for this
+      AOS.init({ duration: 1000, easing: 'ease-in-out', once: true });
+      
+      // this creates the moving background
+      // used https://github.com/VincentGarreau/particles.js/
+      particlesJS('particles-js', {
+        "particles": {
+          "number": { "value": 30, "density": { "enable": true, "value_area": 800 } },
+          "color": { "value": ["#0fcece", "#e94560", "#ffffff"] },
+          "shape": { "type": ["circle", "edge"], "stroke": { "width": 1, "color": "#0fcece" } },
+          "opacity": { "value": 0.08, "random": true, "anim": { "enable": true, "speed": 1, "opacity_min": 0.03, "sync": false } },
+          "size": { "value": 8, "random": true, "anim": { "enable": true, "speed": 2, "size_min": 3, "sync": false } },
+          "line_linked": { "enable": true, "distance": 150, "color": "#0fcece", "opacity": 0.05, "width": 1 },
+          "move": { "enable": true, "speed": 1.5, "direction": "top", "random": true, "straight": false, "out_mode": "out", "bounce": false }
+        },
+        "interactivity": {
+          "detect_on": "canvas",
+          "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
+          "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 0.15 } }, "push": { "particles_nb": 4 } }
+        },
+        "retina_detect": true
+      });
+    });
+  </script>
+</body>
+</html>

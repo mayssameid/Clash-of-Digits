@@ -1,0 +1,206 @@
+
+.about-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 32px;
+  margin: 48px auto;
+  max-width: 1100px;
+  padding: 32px 20px;
+  background: rgba(26, 26, 46, 0.85);
+  border-radius: 18px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  position: relative;
+}
+
+.about-game, .about-creator {
+  flex: 1 1 340px;
+  background: rgba(22, 33, 62, 0.85);
+  border-radius: 12px;
+  padding: 28px 22px;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  position: relative;
+}
+
+.about-creator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 32px;
+}
+
+.about-section h2 {
+  font-family: 'Orbitron', Arial, sans-serif;
+  color: #e94560;
+  font-size: 2rem;
+  margin-bottom: 18px;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.about-game p, .about-creator p {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: #c9bdbd;
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  text-align: center;
+}
+
+.math-animations {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 32px;
+  margin: 0 18px;
+  /* This makes it fill the space between the two sections */
+  min-width: 80px;
+}
+
+.math-symbol {
+  font-size: 2.8rem;
+  font-family: 'Orbitron', Arial, sans-serif;
+  color: #0fcece;
+  opacity: 0.85;
+  animation: float-math 2.2s infinite ease-in-out;
+  transition: color 0.3s;
+  cursor: default;
+  filter: drop-shadow(0 2px 8px #e94560);
+}
+
+.math-symbol.plus { animation-delay: 0s; }
+.math-symbol.minus { animation-delay: 0.4s; }
+.math-symbol.multiply { animation-delay: 0.8s; }
+.math-symbol.divide { animation-delay: 1.2s; }
+.math-symbol.equal { animation-delay: 1.6s; }
+
+.math-symbol:hover {
+  color: #e94560;
+  filter: drop-shadow(0 4px 16px #0fcece);
+}
+
+/*This creates a floating effect for the symbols*/
+@keyframes float-math {
+  0%, 100% { transform: translateY(0); }                   
+  50% { transform: translateY(-18px) scale(1.15); }       
+}
+
+
+.creator-photo {
+  margin-top: 28px;
+  width: 220px;
+  height: 220px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+  border-radius: 0;
+  overflow: hidden;
+  background: #181828;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s;
+}
+
+.creator-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.creator-photo:hover {
+  transform: scale(1.3);
+  background: rgba(26, 26, 46, 0.97);
+}
+
+/*This makes it mobile friendly*/
+@media screen and (max-width: 768px) {
+  .about-section {
+    flex-direction: column;
+    gap: 20px;
+    margin: 20px 10px;
+    padding: 20px 15px;
+    border-radius: 12px;
+  }
+  
+  .about-game, .about-creator {
+    flex: none;
+    padding: 20px 15px;
+    border-radius: 10px;
+  }
+  
+  .about-section h2 {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+  }
+  
+  .about-game p, .about-creator p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  .math-animations {
+    flex-direction: row;
+    justify-content: center;
+    gap: 15px;
+    margin: 15px 0;
+    min-width: auto;
+  }
+  
+  .math-symbol {
+    font-size: 2rem;
+  }
+  
+  .creator-photo {
+    width: 180px;
+    height: 180px;
+    margin-top: 20px;
+  }
+  
+  .creator-photo:hover {
+    transform: scale(1.1);
+  }
+}
+
+/* this is mobile friendly for 480px and below */
+
+@media screen and (max-width: 480px) {
+  .about-section {
+    margin: 15px 5px;
+    padding: 15px 10px;
+  }
+  
+  .about-game, .about-creator {
+    padding: 15px 10px;
+  }
+  
+  .about-section h2 {
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+  }
+  
+  .about-game p, .about-creator p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  
+  .math-animations {
+    gap: 12px;
+    margin: 12px 0;
+  }
+  
+  .math-symbol {
+    font-size: 1.8rem;
+  }
+  
+  .creator-photo {
+    width: 150px;
+    height: 150px;
+    margin-top: 15px;
+  }
+  
+  .creator-photo:hover {
+    transform: scale(1.05);
+  }
+}

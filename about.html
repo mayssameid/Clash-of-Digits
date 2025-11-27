@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About - Math Duel Arena</title>
+  <link rel="stylesheet" href="styles.css"> <!-- this is for the main style of the website -->
+  <link rel="stylesheet" href="nav.css"> 
+  <link rel="stylesheet" href="about.css"> 
+  
+  <!-- an external library was used for the scroll animations -->
+  <!-- i got this from: https://github.com/michalsnik/aos -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+  <div id="particles-js"></div>
+
+  <header>
+    <nav>
+      <div class="logo-container">
+        <img src="clashofdigits.png" alt="Logo" class="logo">
+      </div>
+      <ul class="nav-links">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="player.html">Player Input</a></li>
+        <li><a href="arena.html">Game Arena</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="leaderboard.html">Leaderboard</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="about-section">
+      <div class="about-game" data-aos="fade-up">
+        <h2 data-aos="fade-down" data-aos-delay="100">About the Game</h2>
+        <p data-aos="fade-in" data-aos-delay="200">Clash of Digits is an exciting game that challenges players to test their math skills in fast-paced duels. Players can compete against friends or challenge the computer, with varying levels of difficulty to ensure fun for all ages.</p>
+      </div>
+     
+      <div class="math-animations">
+         <span class="math-symbol plus">+</span>
+         <span class="math-symbol minus">−</span>
+         <span class="math-symbol multiply">×</span>
+         <span class="math-symbol divide">÷</span>
+         <span class="math-symbol equal">=</span>
+      </div>
+
+      <div class="about-creator" data-aos="fade-up" data-aos-delay="400">
+        <h2 data-aos="slide-right" data-aos-delay="500">About the Creator</h2>
+        <p data-aos="fade-in" data-aos-delay="600">"Growing up, I've always had a strong passion for solving math problems, and i wanted to create a game that mixes strategy with math, allowing me to share that passion in a fun engaging way." </p>
+        <p data-aos="fade-in" data-aos-delay="700">~The Creator: Mayssam Eid</p>
+        <div class="creator-photo" data-aos="zoom-in" data-aos-delay="800">
+          <img src="creator_mayssam.jpg" alt="Mayssam">
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2025 Math Duel Arena. All Rights Reserved.</p>
+  </footer>
+
+  <!-- javaScript librarie for animations -->
+  <!-- this makes elements animate when you scroll -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  
+  <!-- this creates the moving background effect -->
+  <!-- found it on: https://github.com/VincentGarreau/particles.js/ -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  
+  <!-- this handles the background music -->
+  <!-- got it from: https://github.com/goldfire/howler.js -->
+  <script src="https://cdn.jsdelivr.net/npm/howler@2.2.3/dist/howler.min.js"></script>
+  
+  <!-- my music system for the game -->
+  <!-- music from pixabay-->
+  <script src="game-music.js"></script>
+  
+  <script>
+    // setting up animations when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      
+      // this makes the scroll animations work, i used external help for this
+      AOS.init({ duration: 1000, easing: 'ease-in-out', once: true });
+      
+      // this creates the moving background
+      // used https://github.com/VincentGarreau/particles.js/
+      particlesJS('particles-js', {
+        "particles": {
+          "number": { "value": 20, "density": { "enable": true, "value_area": 800 } },
+          "color": { "value": ["#0fcece", "#e94560", "#ffffff"] },
+          "shape": { "type": ["circle", "edge"], "stroke": { "width": 1, "color": "#0fcece" } },
+          "opacity": { "value": 0.08, "random": true, "anim": { "enable": true, "speed": 1, "opacity_min": 0.03, "sync": false } },
+          "size": { "value": 6, "random": true, "anim": { "enable": true, "speed": 2, "size_min": 2, "sync": false } },
+          "line_linked": { "enable": true, "distance": 150, "color": "#0fcece", "opacity": 0.04, "width": 1 },
+          "move": { "enable": true, "speed": 1, "direction": "top", "random": true, "straight": false, "out_mode": "out", "bounce": false }
+        },
+        "interactivity": {
+          "detect_on": "canvas",
+          "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
+          "modes": { "grab": { "distance": 120, "line_linked": { "opacity": 0.15 } }, "push": { "particles_nb": 3 } }
+        },
+        "retina_detect": true
+      });
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,175 @@
+
+.player-input {
+  background-color: #1a1a2e;
+  color: white;
+  padding: 30px;
+  border-radius: 10px;
+  max-width: 600px;
+  margin: 30px auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.player-input h2 {
+  font-family: 'Orbitron', Arial, sans-serif;
+  font-size: 2rem;
+  color: #e94560;
+  margin-bottom: 20px;
+}
+
+.input-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.input-group label {
+  font-size: 1.1rem;
+  display: block;
+  margin-bottom: 5px;
+  color: white;
+}
+
+.input-group input[type="text"], 
+.input-group select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: white;
+  color: #333;
+}
+
+.input-group input[type="radio"] {
+  margin-right: 10px;
+  accent-color: #e94560;
+}
+
+.input-group label input[type="radio"] {
+  display: inline;
+  width: auto;
+  margin-right: 8px;
+}
+
+.input-group label:has(input[type="radio"]) {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 20px;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.player-input .primary-action {
+  display: inline-block;
+  margin-top: 28px; 
+  padding: 12px 32px;
+  background-color: #e94560;
+  color: #fff;
+  font-size: 1.1rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-weight: 600;
+  transition: background 0.2s, transform 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border: none;
+  cursor: pointer;
+}
+
+.player-input .primary-action:hover {
+  background-color: #0fcece; 
+  transform: translateY(-2px) scale(1.03);
+  color: #fff;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #0fcece;
+  box-shadow: 0 0 5px rgba(15, 206, 206, 0.3);
+}
+
+.input-group select:focus {
+  outline: none;
+  border-color: #0fcece;
+  box-shadow: 0 0 5px rgba(15, 206, 206, 0.3);
+}
+
+@media screen and (max-width: 768px) {
+  .player-input {
+    margin: 15px;
+    padding: 20px 15px;
+    max-width: none;
+    border-radius: 8px;
+  }
+  
+  .player-input h2 {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+  }
+  
+  .input-group {
+    margin-bottom: 15px;
+    text-align: left;
+  }
+  
+  .input-group label {
+    font-size: 1rem;
+    margin-bottom: 5px;
+  }
+  
+  .input-group input[type="text"], 
+  .input-group select {
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 6px;
+  }
+  
+  .input-group label:has(input[type="radio"]) {
+    display: block;
+    margin-bottom: 10px;
+    margin-right: 0;
+    font-size: 0.95rem;
+  }
+  
+  .player-input .primary-action {
+    width: 100%;
+    margin-top: 20px;
+    padding: 14px 20px;
+    font-size: 1.1rem;
+    border-radius: 6px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .player-input {
+    margin: 10px;
+    padding: 15px 12px;
+  }
+  
+  .player-input h2 {
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+  }
+  
+  .input-group {
+    margin-bottom: 12px;
+  }
+  
+  .input-group label {
+    font-size: 0.95rem;
+  }
+  
+  .input-group input[type="text"], 
+  .input-group select {
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  .player-input .primary-action {
+    padding: 12px 18px;
+    font-size: 1rem;
+    margin-top: 15px;
+  }
+}

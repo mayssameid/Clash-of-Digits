@@ -1,0 +1,191 @@
+===============================================
+HOW TO TEST THE DEPLOYMENT
+===============================================
+
+PART 1: TEST LOCALLY FIRST (Before Deploying)
+===============================================
+
+1. Start your server:
+   npm start
+   
+2. Open browser: http://localhost:3000
+
+3. Test each feature:
+   ☐ Homepage loads with all styling
+   ☐ Navigate to different pages (About, Arena, Leaderboard, Feedback)
+   ☐ Create users on player.html
+   ☐ Play a game and finish it
+   ☐ Check if score appears on leaderboard
+   ☐ Submit feedback form
+   ☐ Open browser console (F12) - check for NO red errors
+
+If everything works locally ✓ → Ready to deploy!
+
+===============================================
+PART 2: DEPLOY TO RAILWAY
+===============================================
+
+Follow these exact steps:
+
+1. PUSH TO GITHUB:
+   git init
+   git add .
+   git commit -m "Math Duel Arena - Ready for deployment"
+   
+   (Create repo on github.com, then:)
+   git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO.git
+   git push -u origin main
+
+2. DEPLOY ON RAILWAY:
+   - Go to railway.app
+   - Sign in with GitHub
+   - New Project → Deploy from GitHub repo
+   - Select your repository
+   - Railway auto-deploys
+
+3. ADD MYSQL DATABASE:
+   - In Railway dashboard, click "+ New"
+   - Select Database → Add MySQL
+   - Wait for it to provision (takes ~30 seconds)
+
+4. CONNECT APP TO DATABASE:
+   - Click your web service
+   - Go to Variables tab
+   - Click on MySQL service to see connection details
+   - Add these variables (copy values from MySQL):
+     
+     DB_HOST = [copy MYSQLHOST]
+     DB_USER = [copy MYSQLUSER]  
+     DB_PASSWORD = [copy MYSQLPASSWORD]
+     DB_NAME = [copy MYSQLDATABASE]
+     DB_CONNECTION_LIMIT = 10
+     NODE_ENV = production
+
+5. CREATE DATABASE TABLES:
+   - Click MySQL service → Data/Query tab
+   - Open database_setup.sql on your computer
+   - Copy ALL the SQL code
+   - Paste in Railway query editor
+   - Run/Execute
+   - Should see: "Query successful" or similar
+
+6. GET YOUR URL:
+   - Click web service → Settings
+   - Click "Generate Domain"
+   - You'll get: https://something.up.railway.app
+   - SAVE THIS URL FOR SUBMISSION!
+
+===============================================
+PART 3: TEST THE DEPLOYED APP
+===============================================
+
+Open your Railway URL in browser and test:
+
+1. BASIC LOADING TEST:
+   ☐ Homepage loads without errors
+   ☐ All CSS and images load properly
+   ☐ Navigation works between pages
+
+2. DATABASE CONNECTION TEST:
+   ☐ Go to player.html
+   ☐ Enter username: "TestUser1" and email
+   ☐ Click Start Game
+   ☐ Should redirect to arena (means database connected!)
+
+3. GAME FUNCTIONALITY TEST:
+   ☐ Play through a full game
+   ☐ Answer questions
+   ☐ Finish the game
+   ☐ Should see final score
+
+4. SCORE SAVING TEST:
+   ☐ Go to leaderboard.html
+   ☐ Your score should appear in the list
+   ☐ Try the search feature
+
+5. FEEDBACK TEST:
+   ☐ Go to feedback.html
+   ☐ Fill out and submit the form
+   ☐ Should see success message
+
+6. VERIFY DATABASE DATA:
+   ☐ Go back to Railway → MySQL service
+   ☐ Go to Data tab
+   ☐ Check tables: users, scores, feedback
+   ☐ Your test data should be there!
+
+7. CHECK FOR ERRORS:
+   ☐ Open browser DevTools (F12)
+   ☐ Go to Console tab
+   ☐ Should have NO red errors
+   ☐ If there are errors, copy them and check Railway logs
+
+===============================================
+PART 4: IF SOMETHING DOESN'T WORK
+===============================================
+
+Problem: App won't load at all (404 or 503)
+Fix: 
+- Go to Railway → Your service → Deployments
+- Check if build succeeded
+- Click on latest deployment → View Logs
+- Look for error messages
+
+Problem: "Database connection error"
+Fix:
+- Railway → Web service → Variables
+- Make sure all DB_ variables are set correctly
+- Compare with MySQL service connection details
+- Redeploy if you changed variables
+
+Problem: App loads but features don't work
+Fix:
+- Open browser console (F12)
+- Look for API errors (red text)
+- Check if URLs are correct (not localhost)
+- Go to Railway logs to see server errors
+
+Problem: Tables don't exist
+Fix:
+- Railway → MySQL service → Query tab
+- Re-run database_setup.sql
+- Make sure all CREATE TABLE statements executed
+
+Problem: Changes not showing up
+Fix:
+- Make sure you pushed to GitHub (git push)
+- Railway deploys from GitHub automatically
+- Check Railway → Deployments to see if new deploy triggered
+
+===============================================
+WHAT TO SCREENSHOT FOR SUBMISSION
+===============================================
+
+Take screenshots of:
+1. ✓ Your Railway dashboard showing deployed app
+2. ✓ The homepage of your deployed site
+3. ✓ A completed game with scores
+4. ✓ The leaderboard showing data
+5. ✓ Feedback form submission success
+6. ✓ Railway MySQL Data tab showing your tables
+
+===============================================
+FINAL SUBMISSION CHECKLIST
+===============================================
+
+☐ Live URL is working: https://__________.up.railway.app
+☐ GitHub repo URL: https://github.com/________
+☐ All features tested and working
+☐ Screenshots taken
+☐ DEPLOYMENT_GUIDE.txt included in project folder
+☐ READMEE.txt updated with deployment info
+☐ No errors in browser console
+☐ Database has test data
+
+SUBMIT:
+1. Zip your entire project folder
+2. Include the live URL in submission comments
+3. Include GitHub repo URL
+4. Upload to Blackboard before November 30th 2025
+
+===============================================

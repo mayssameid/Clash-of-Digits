@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Arena - Math Duel Arena</title>
+  <link rel="stylesheet" href="styles.css"> >
+  <link rel="stylesheet" href="nav.css"> 
+  <link rel="stylesheet" href="arena.css">
+  <!-- an external library was used for the scroll animations -->
+  <!-- i got this from: https://github.com/michalsnik/aos -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+  <div id="particles-js"></div>
+
+  <header>
+    <nav>
+      <div class="logo-container">
+        <img src="clashofdigits.png" alt="Logo" class="logo">
+      </div>
+      <ul class="nav-links">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="player.html">Player Input</a></li>
+        <li><a href="arena.html" class="active">Game Arena</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="leaderboard.html">Leaderboard</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="game-arena">
+      <h1>Math Duel Arena</h1>
+      <div class="game-info">
+        <div class="player-info">
+          <span id="player1-name">Player 1: </span>
+          <span id="player2-name">Player 2: </span>
+        </div>
+        <div id="current-turn">It's Player 1's Turn</div>
+      </div>
+
+      <!-- this is where the math question appears -->
+      <div class="question">
+        <h2 id="math-question">What is 5 + 5?</h2>
+      </div>
+
+      <!-- these are the answer buttons for multiple choice -->
+      <div class="answers">
+        <button class="answer-button" id="answerA">10</button>
+        <button class="answer-button" id="answerB">12</button>
+        <button class="answer-button" id="answerC">15</button>
+        <button class="answer-button" id="answerD">20</button>
+      </div>
+
+      <!-- this shows each player's current score -->
+      <div class="score">
+        <span id="player1-score">Player 1: 0</span>
+        <span id="player2-score">Player 2: 0</span>
+      </div>
+
+      <!-- countdown timer for each question -->
+      <div class="timer">
+        <p id="timer">Time Remaining: 10</p>
+      </div>
+
+      <!-- button to go to next question (hidden at first) -->
+      <button id="next-question-btn" style="display: none;">Next Question</button>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Math Duel Arena. All Rights Reserved.</p>
+  </footer>
+
+  <script src="arena.js"></script>
+  
+  <!-- external libraries were used for animations and effects -->
+  <!-- animation library was used for scroll effects -->
+  <!-- got it from: https://github.com/michalsnik/aos -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  
+  <!-- particles.js for the background animation -->
+  <!-- got it from: https://github.com/VincentGarreau/particles.js/ -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  
+  <!-- howler.js for playing game sounds -->
+  <script src="https://cdn.jsdelivr.net/npm/howler@2.2.3/dist/howler.min.js"></script>
+
+  <!-- the music file is from pixabay -->
+  <script src="game-music.js"></script>
+  
+  <script>
+    // setting up the animations and background effects
+    document.addEventListener('DOMContentLoaded', function() {
+      // initializing the scroll animations library
+      AOS.init({ duration: 1000, easing: 'ease-in-out', once: true });
+      // setting up the particle background animation
+      particlesJS('particles-js', {
+        "particles": { "number": { "value": 25 }, "color": { "value": ["#0fcece", "#e94560"] }, "shape": { "type": "circle" }, "opacity": { "value": 0.1 }, "size": { "value": 8 }, "line_linked": { "enable": true, "distance": 150, "color": "#0fcece", "opacity": 0.05 }, "move": { "enable": true, "speed": 1.5 } },
+        "interactivity": { "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" } } },
+        "retina_detect": true
+      });
+    });
+  </script>
+</body>
+</html>

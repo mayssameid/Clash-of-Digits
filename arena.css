@@ -1,0 +1,453 @@
+
+.game-arena {
+  background: linear-gradient(135deg, rgba(22, 33, 62, 0.8), rgba(16, 22, 36, 0.9));
+  color: white;
+  padding: 40px 20px;
+  max-width: 900px;
+  margin: 50px auto;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  position: relative;
+}
+
+.game-arena h1 {
+  color: #e94560;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  font-family: 'Orbitron', Arial, sans-serif;
+}
+
+.game-info {
+  margin-bottom: 30px;
+}
+
+.game-info .player-info {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.game-info .player-info span {
+  font-weight: bold;
+}
+
+.game-info #current-turn {
+  font-size: 1.5rem;
+  color: #ffdd00;
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+/*this is the section of the math questions*/
+.game-arena .question {
+  background: rgba(26, 26, 46, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+.answers {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.answer-button {
+  padding: 20px;
+  font-size: 1.5rem;
+  background-color: #0fcece;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.answer-button:hover {
+  background-color: #e94560;
+  transform: scale(1.1); 
+}
+
+.answer-button:active {
+  background-color: #d84338;
+}
+
+/*this displays the score*/
+.game-arena .score {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+}
+
+#player1-score, #player2-score {
+  font-weight: 700;
+  color: #e94560;
+}
+
+.timer {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #ffdd00;
+  margin-bottom: 20px;
+}
+
+#next-question-btn {
+  padding: 15px 30px;
+  background-color: #3f4a67;
+  color: white;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: none;
+  margin-top: 30px;
+}
+
+#next-question-btn:hover {
+  background-color: #2b2d42;
+  transform: scale(1.05);
+}
+
+#timer {
+  font-size: 2rem;
+  color: #ffdd00;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.game-results {
+  text-align: center;
+  padding: 30px;
+  background: rgba(26, 26, 46, 0.9);
+  border-radius: 15px;
+  margin-top: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.game-results h2 {
+  color: #e94560;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  font-family: 'Orbitron', Arial, sans-serif;
+}
+
+.final-scores {
+  margin: 30px 0;
+}
+
+.final-scores h3 {
+  color: #0fcece;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+.score-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  margin: 10px 0;
+  background: rgba(22, 33, 62, 0.8);
+  border-radius: 10px;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.score-item.winner {
+  border-color: #ffdd00;
+  background: rgba(255, 221, 0, 0.1);
+  transform: scale(1.05);
+}
+
+.player-name {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #cfeff0;
+}
+
+.player-score {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #e94560;
+}
+
+/* this celebrates the winner with a message*/
+.winner-message {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ffdd00;
+  margin: 20px 0;
+  padding: 15px;
+  background: rgba(255, 221, 0, 0.1);
+  border-radius: 10px;
+  border: 2px solid #ffdd00;
+}
+
+.game-actions {
+  margin-top: 30px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.primary-action {
+  background-color: #e94560;
+  color: white;
+  padding: 15px 40px;
+  font-size: 1.3rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+
+.primary-action:hover {
+  background-color: #d84338;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(233, 69, 96, 0.3);
+}
+
+.secondary-action {
+  background-color: #3f4a67;
+  color: white;
+  padding: 12px 30px;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.secondary-action:hover {
+  background-color: #2b2d42;
+  transform: translateY(-2px);
+}
+
+/* mobile friendly design */
+@media screen and (max-width: 768px) {
+  .arena {
+    margin: 20px 10px;
+    padding: 15px;
+    border-radius: 10px;
+  }
+  
+  .game-arena {
+    margin: 20px 10px;
+    padding: 20px 15px;
+    border-radius: 10px;
+  }
+  
+  .game-arena h1 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+  }
+  
+  .game-info .player-info {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+  
+  .game-info #current-turn {
+    font-size: 1.2rem;
+    margin-top: 5px;
+  }
+  
+  .players { 
+    flex-direction: column; 
+    gap: 15px;
+  }
+  
+  .player { 
+    width: 100%;
+    min-width: auto;
+    padding: 12px;
+  }
+  
+  .player h4 {
+    font-size: 1rem;
+    margin: 4px 0 2px;
+  }
+  
+  .score {
+    font-size: 1.5rem;
+    margin-top: 4px;
+  }
+  
+  .game-arena .question,
+  .question { 
+    font-size: 1.3rem; 
+    padding: 15px 10px;
+    margin-bottom: 20px;
+  }
+  
+  .answers {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .answer-button {
+    padding: 15px;
+    font-size: 1.2rem;
+  }
+  
+  .timer,
+  #timer {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+  }
+  
+  .game-arena .score {
+    flex-direction: column;
+    gap: 10px;
+    font-size: 1.2rem;
+    text-align: center;
+  }
+  
+  #answer, #answer-input { 
+    width: 100%; 
+    max-width: 100%;
+    margin-bottom: 15px;
+    padding: 12px;
+    font-size: 16px;
+  }
+  
+  .controls {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .primary-action {
+    width: 100%;
+    max-width: 200px;
+    padding: 12px 18px;
+    font-size: 1rem;
+  }
+  
+  #next-question-btn {
+    width: 100%;
+    max-width: 250px;
+    padding: 12px 20px;
+    font-size: 1.1rem;
+  }
+  
+  .modal-content {
+    padding: 25px 20px;
+    margin: 20px;
+    width: calc(100% - 40px);
+  }
+  
+  .modal h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+  }
+  
+  .modal p {
+    font-size: 1.1rem;
+  }
+  
+  .game-results {
+    padding: 20px 15px;
+    margin: 15px 10px;
+  }
+  
+  .game-results h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+  }
+  
+  .final-scores h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+  
+  .score-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 5px;
+    padding: 12px 15px;
+  }
+  
+  .winner-message {
+    font-size: 1.5rem;
+    margin: 15px 0;
+    padding: 12px;
+  }
+  
+  .game-actions {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .primary-action,
+  .secondary-action {
+    width: 100%;
+    max-width: 250px;
+    padding: 12px 20px;
+    font-size: 1.1rem;
+  }
+}
+
+/*for mobile devices 480px and below*/
+@media screen and (max-width: 480px) {
+  .arena {
+    margin: 15px 5px;
+    padding: 12px;
+  }
+  
+  .game-arena {
+    margin: 15px 5px;
+    padding: 15px 10px;
+  }
+  
+  .game-arena h1 {
+    font-size: 1.8rem;
+  }
+  
+  .game-arena .question,
+  .question { 
+    font-size: 1.1rem; 
+    padding: 12px 8px;
+  }
+  
+  .answer-button {
+    padding: 12px;
+    font-size: 1.1rem;
+  }
+  
+  .timer,
+  #timer {
+    font-size: 1.2rem;
+  }
+  
+  .modal-content {
+    padding: 20px 15px;
+  }
+  
+  .modal h2 {
+    font-size: 1.8rem;
+  }
+  
+  .game-results h2 {
+    font-size: 1.8rem;
+  }
+  
+  .final-scores h3 {
+    font-size: 1.3rem;
+  }
+  
+  .winner-message {
+    font-size: 1.3rem;
+  }
+}
