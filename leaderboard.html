@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Leaderboard - Clash of Digits</title>
+  <title>Leaderboard - Math Duel Arena</title>
+  <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="nav.css">
   <link rel="stylesheet" href="leaderboard.css">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -17,11 +18,31 @@
 <body>
   <div id="particles-js"></div>
   
-  <nav class="navbar" data-aos="fade-down"></nav>
+  <header>
+    <nav>
+      <div class="logo-container">
+        <img src="clashofdigits.png" alt="Logo" class="logo">
+      </div>
+      <ul class="nav-links">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="player.html">Player Input</a></li>
+        <li><a href="arena.html">Game Arena</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="leaderboard.html" class="active">Leaderboard</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+      </ul>
+    </nav>
+  </header>
   
-  <main>
+  <main class="container">
     <div id="root"></div>
   </main>
+  
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Math Duel Arena. All Rights Reserved.</p>
+    </div>
+  </footer>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
@@ -149,17 +170,17 @@
               
               {/* Conditional Rendering: Display leaderboard table when data exists */}
               {!loading && !error && leaderboardData.length > 0 && (
-                <table className="leaderboard-table">
+                <table className="leaderboard-table" id="leaderboard-table">
                   <thead>
                     <tr>
                       <th>Rank</th>
-                      <th>Player Name</th>
-                      <th>Total Score</th>
+                      <th>Player</th>
                       <th>Games Played</th>
-                      <th>Avg Score</th>
+                      <th>Total Score</th>
+                      <th>Average Score</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody id="leaderboard-body">
                     {/* Array.map() renders each player as a table row */}
                     {/* Key prop required for React's efficient rendering */}
                     {leaderboardData.map((player, index) => (
@@ -171,8 +192,8 @@
                           {index > 2 && `#${index + 1}`}
                         </td>
                         <td className="player-name">{player.username}</td>
-                        <td>{player.total_score}</td>
                         <td>{player.games_played}</td>
+                        <td>{player.total_score}</td>
                         <td>{parseFloat(player.average_score).toFixed(1)}</td>
                       </tr>
                     ))}
@@ -183,28 +204,25 @@
           </section>
 
           <div className="player-search-section" data-aos="fade-up" data-aos-delay="400">
-            <h2>🔍 Search Player Stats</h2>
+            <h2>Find Your Stats</h2>
             {/* Controlled Form Component: onSubmit calls handleSearch function */}
-            <form onSubmit={handleSearch} className="search-form">
+            <div className="search-container">
               {/* Controlled Input: value prop bound to searchQuery state */}
               {/* onChange updates state on every keystroke (two-way binding) */}
               <input
                 type="text"
+                id="player-search"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Enter player name..."
+                placeholder="Enter your username"
                 className="search-input"
               />
-              <button type="submit" className="search-button">Search</button>
-              {/* Conditional Rendering: Show clear button only when results exist */}
-              {searchResult && (
-                <button type="button" onClick={clearSearch} className="clear-button">Clear</button>
-              )}
-            </form>
+              <button onClick={handleSearch} className="search-button">Search</button>
+            </div>
 
             {/* Conditional Rendering: Display player stats only when search succeeds */}
             {searchResult && (
-              <div className="player-stats-result" data-aos="zoom-in">
+              <div className="player-stats" id="player-stats">
                 <h3>Player Statistics</h3>
                 <div className="stats-grid">
                   <div className="stat-item">
@@ -256,15 +274,6 @@
         modes: { grab: { distance: 140 } }
       }
     });
-  </script>
-
-  <script>
-    // Load navigation
-    fetch('nav.html')
-      .then(response => response.text())
-      .then(data => {
-        document.querySelector('.navbar').innerHTML = data;
-      });
   </script>
 </body>
 </html>
