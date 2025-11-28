@@ -29,10 +29,8 @@ BACK-END:
 
 
 DEPLOYMENT:
-• Deployed to Railway: https://clash-of-digits-production.up.railway.app
 • MySQL database hosted on Railway with public TCP proxy connection
 • Environment variables configured for secure database credentials
-• All features working: user registration, game sessions, score saving, leaderboard, feedback submission
 
 
 EXTERNAL LIBRARIES:
