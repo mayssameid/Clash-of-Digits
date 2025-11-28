@@ -50,104 +50,95 @@
   <script src="game-music.js"></script>
   
   <script type="text/babel">
-    // React Hooks: useState manages component state, useEffect handles side effects
+    // using react hooks to manage state and side effects in my component
     const { useState, useEffect } = React;
     
-    // API URL dynamically switches between local development and production
-    // Works with both Live Server (5500) and Node server (3000)
+    // this makes sure the api url works whether i'm testing locally or deployed
     const API_URL = window.location.port === '5500'
       ? 'http://localhost:3000/api'
       : window.location.hostname === 'localhost' 
       ? 'http://localhost:3000/api' 
       : '/api';
 
-    // Main Leaderboard Component - React functional component using hooks
+    // main leaderboard component using react
     function Leaderboard() {
-      // useState Hook: Manages leaderboard data array fetched from API
+      // keeping track of the leaderboard data i get from the api
       const [leaderboardData, setLeaderboardData] = useState([]);
       
-      // useState Hook: Manages search input value for player lookup
+      // storing what the user types in the search box
       const [searchQuery, setSearchQuery] = useState('');
       
-      // useState Hook: Stores individual player search result object
+      // this holds the search result when someone looks up a specific player
       const [searchResult, setSearchResult] = useState(null);
       
-      // useState Hook: Controls loading state for better UX
+      // showing a loading message while data is being fetched
       const [loading, setLoading] = useState(true);
       
-      // useState Hook: Stores error messages for display
+      // keeping track of any errors that might happen
       const [error, setError] = useState(null);
 
-      // useEffect Hook: Runs once on component mount (empty dependency array [])
-      // Automatically fetches leaderboard data when page loads
+      // this runs once when the page loads to fetch the leaderboard
       useEffect(() => {
         fetchLeaderboard();
       }, []);
 
-      // Async function to fetch leaderboard data from backend API
+      // getting the leaderboard data from my backend
       const fetchLeaderboard = async () => {
         try {
-          // Set loading to true before fetching (updates UI)
           setLoading(true);
           
-          // Fetch API call to backend endpoint
+          // calling the api to get all player scores
           const response = await fetch(`${API_URL}/leaderboard`);
           
-          // Error handling: check if response is successful
           if (!response.ok) {
             throw new Error('Failed to load leaderboard');
           }
           
-          // Parse JSON response and update state
+          // updating the state with the data i got back
           const data = await response.json();
-          setLeaderboardData(data); // Update leaderboard data state
-          setError(null); // Clears any previous errors
+          setLeaderboardData(data);
+          setError(null);
         } catch (err) {
           console.error('Error loading leaderboard:', err);
           setError('Unable to load leaderboard. Please try again later.');
         } finally {
-          // Always set loading to false when done (success or error)
           setLoading(false);
         }
       };
 
-      // Event handler for player search form submission
+      // handling when someone searches for a player
       const handleSearch = async (e) => {
-        e.preventDefault(); // Prevent default form submission behavior
+        e.preventDefault();
         
-        // Validation: ensure search query is not empty
         if (!searchQuery.trim()) {
           alert('Please enter a player name');
           return;
         }
 
         try {
-          // Fetch specific player data using search query
-          // encodeURIComponent prevents URL injection attacks
+          // searching for a specific player by name
           const response = await fetch(`${API_URL}/player/search?name=${encodeURIComponent(searchQuery)}`);
           
           if (!response.ok) {
             throw new Error('Player not found');
           }
           
-          // Update search result state with player data
           const data = await response.json();
           setSearchResult(data);
         } catch (err) {
           console.error('Error searching player:', err);
           alert('Player not found. Please try a different name.');
-          setSearchResult(null); // Clear previous results
+          setSearchResult(null);
         }
       };
 
-      // Clear search functionality - resets search state
+      // clearing the search results
       const clearSearch = () => {
-        setSearchQuery(''); // Clear input field
-        setSearchResult(null); // Remove search results
+        setSearchQuery('');
+        setSearchResult(null);
       };
 
-      // JSX Return: React component's rendered output
-      // Uses conditional rendering with && and ternary operators
+      // rendering the component with jsx
       return (
         <>
           <section className="leaderboard-section" data-aos="fade-up">
@@ -157,18 +148,18 @@
             </p>
 
             <div className="leaderboard-container" data-aos="slide-up" data-aos-delay="300">
-              {/* Conditional Rendering: Show loading message while fetching data */}
+              {/* showing loading message while data is loading */}
               {loading && <p className="loading-message">Loading leaderboard...</p>}
               
-              {/* Conditional Rendering: Display error if fetch fails */}
+              {/* displaying error if something goes wrong */}
               {error && <p className="error-message">{error}</p>}
               
-              {/* Conditional Rendering: Show message when no players exist */}
+              {/* showing message when there are no players yet */}
               {!loading && !error && leaderboardData.length === 0 && (
                 <p className="no-data-message">No players yet. Be the first to play!</p>
               )}
               
-              {/* Conditional Rendering: Display leaderboard table when data exists */}
+              {/* displaying the leaderboard table when we have data */}
               {!loading && !error && leaderboardData.length > 0 && (
                 <table className="leaderboard-table" id="leaderboard-table">
                   <thead>
@@ -181,8 +172,7 @@
                     </tr>
                   </thead>
                   <tbody id="leaderboard-body">
-                    {/* Array.map() renders each player as a table row */}
-                    {/* Key prop required for React's efficient rendering */}
+                    {/* looping through each player to show their row */}
                     {leaderboardData.map((player, index) => (
                       <tr key={player.user_id} className={index < 3 ? `rank-${index + 1}` : ''}>
                         <td>
@@ -205,10 +195,9 @@
 
           <div className="player-search-section" data-aos="fade-up" data-aos-delay="400">
             <h2>Find Your Stats</h2>
-            {/* Controlled Form Component: onSubmit calls handleSearch function */}
+            {/* search form to find a specific player */}
             <div className="search-container">
-              {/* Controlled Input: value prop bound to searchQuery state */}
-              {/* onChange updates state on every keystroke (two-way binding) */}
+              {/* keeping the input value synced with the state */}
               <input
                 type="text"
                 id="player-search"
@@ -220,7 +209,7 @@
               <button onClick={handleSearch} className="search-button">Search</button>
             </div>
 
-            {/* Conditional Rendering: Display player stats only when search succeeds */}
+            {/* showing the player stats when i find someone */}
             {searchResult && (
               <div className="player-stats" id="player-stats">
                 <h3>Player Statistics</h3>
@@ -251,12 +240,10 @@
       );
     }
 
-    // ReactDOM.render: Mounts the React component to the DOM
-    // First argument: React component to render
-    // Second argument: DOM element where component will be inserted
+    // mounting my react component to the page
     ReactDOM.render(<Leaderboard />, document.getElementById('root'));
 
-    // Initialize AOS (Animate On Scroll) library after React renders
+    // setting up the scroll animations after everything loads
     AOS.init({ duration: 1000, easing: 'ease-in-out', once: true });
     
     particlesJS('particles-js', {
