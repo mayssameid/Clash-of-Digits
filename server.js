@@ -6,6 +6,7 @@ const mysql = require('mysql2');
 const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
+// Railway deployment
 
 //these functions run before every request reaches the endpoints
 app.use(cors()); // cors allows the browser to make requests from html pages to this server
