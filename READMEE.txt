@@ -28,6 +28,13 @@ BACK-END:
 • Implemented error handling and validation
 
 
+DEPLOYMENT:
+• Deployed to Railway: https://clash-of-digits-production.up.railway.app
+• MySQL database hosted on Railway with public TCP proxy connection
+• Environment variables configured for secure database credentials
+• All features working: user registration, game sessions, score saving, leaderboard, feedback submission
+
+
 EXTERNAL LIBRARIES:
 • React 18 - https://react.dev/ (Leaderboard page with useState and useEffect hooks)
 • AOS (Animate On Scroll) - https://github.com/michalsnik/aos
