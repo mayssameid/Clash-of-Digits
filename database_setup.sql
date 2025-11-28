@@ -74,6 +74,3 @@ LEFT JOIN scores s ON u.user_id = s.user_id
 GROUP BY u.user_id, u.username
 ORDER BY total_score DESC;
 
--- Database setup complete
--- Tables created: users, game_sessions, scores, feedback
--- View created: leaderboard

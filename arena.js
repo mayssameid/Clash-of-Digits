@@ -444,9 +444,8 @@ function showFeedback(message, color) {
     }, 1000);
 }
 
-// Phase 2: Save score to database using Fetch API
-// This function sends the player's score to the back-end server after the game ends
-// It's called for both players when the game finishes
+// this function sends the player's score to the back-end server after the game ends
+// it's called for both players when the game finishes
 async function saveScoreToDatabase(userId, score, correctAnswers, totalQuestions, timeSpent) {
     if (!userId || !gameState.sessionId) {
         console.log("No user ID or session ID - skipping database save");
@@ -506,7 +505,7 @@ async function endGame() {
     if (gameState.player2Id && gameState.gameMode === 'multiplayer') {
         await saveScoreToDatabase(
             gameState.player2Id,
-            gameState.player2Score * 100, // Score calculation
+            gameState.player2Score * 100, // score calculation
             gameState.player2Correct,
             gameState.totalQuestions,
             timeSpentSeconds

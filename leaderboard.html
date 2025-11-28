@@ -3,102 +3,225 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Leaderboard - Math Duel Arena</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="nav.css"> 
-  <link rel="stylesheet" href="leaderboard.css"> 
-  
-  <!-- AOS library for scroll animations -->
-  <!-- Reference: https://github.com/michalsnik/aos -->
+  <title>Leaderboard - Clash of Digits</title>
+  <link rel="stylesheet" href="nav.css">
+  <link rel="stylesheet" href="leaderboard.css">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  
+  <!-- React and ReactDOM from CDN -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <!-- Babel Standalone for JSX -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 <body>
-  <!-- Background particles animation -->
   <div id="particles-js"></div>
-
-  <header>
-    <nav>
-      <div class="logo-container">
-        <img src="clashofdigits.png" alt="Logo" class="logo">
-      </div>
-      <ul class="nav-links">
-        <li><a href="home.html">Home</a></li>
-        <li><a href="player.html">Player Input</a></li>
-        <li><a href="arena.html">Game Arena</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="leaderboard.html" class="active">Leaderboard</a></li>
-        <li><a href="feedback.html">Feedback</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <main class="container">
-    <section class="leaderboard-section" data-aos="fade-up">
-      <h1 data-aos="zoom-in" data-aos-delay="100">🏆 Leaderboard</h1>
-      <p class="subtitle" data-aos="fade-in" data-aos-delay="200">
-        Top players in Math Duel Arena
-      </p>
-
-      <div id="loading-indicator" class="loading">
-        <div class="spinner"></div>
-        <p>Loading leaderboard...</p>
-      </div>
-
-      <div id="error-message" class="error-message" style="display: none;">
-        <p>Unable to load leaderboard. Please make sure the server is running.</p>
-      </div>
-
-      <div class="leaderboard-container" data-aos="slide-up" data-aos-delay="300">
-        <table class="leaderboard-table" id="leaderboard-table">
-          <thead>
-            <tr>
-              <th>Rank</th>
-              <th>Player</th>
-              <th>Games Played</th>
-              <th>Total Score</th>
-              <th>Average Score</th>
-              <th>Highest Score</th>
-              <th>Total Correct</th>
-              <th>Last Played</th>
-            </tr>
-          </thead>
-          <tbody id="leaderboard-body">
-          </tbody>
-        </table>
-      </div>
-
-      <div class="player-search-section" data-aos="fade-up" data-aos-delay="400">
-        <h2>Find Your Stats</h2>
-        <div class="search-container">
-          <input 
-            type="text" 
-            id="player-search" 
-            placeholder="Enter your username" 
-            class="search-input"
-          >
-          <button onclick="searchPlayer()" class="search-button">Search</button>
-        </div>
-        
-        <div id="player-stats" class="player-stats" style="display: none;">
-        </div>
-      </div>
-    </section>
+  
+  <nav class="navbar" data-aos="fade-down"></nav>
+  
+  <main>
+    <div id="root"></div>
   </main>
 
-  <footer>
-    <div class="container">
-      <p>&copy; 2025 Math Duel Arena. All Rights Reserved.</p>
-    </div>
-  </footer>
-
-  <!-- External libraries -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-  
   <script src="https://cdn.jsdelivr.net/npm/howler@2.2.3/dist/howler.min.js"></script>
-
   <script src="game-music.js"></script>
-  <script src="leaderboard.js"></script>
+  
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+    
+    const API_URL = window.location.hostname === 'localhost' 
+      ? 'http://localhost:3000/api' 
+      : '/api';
+
+    // Leaderboard Component
+    function Leaderboard() {
+      const [leaderboardData, setLeaderboardData] = useState([]);
+      const [searchQuery, setSearchQuery] = useState('');
+      const [searchResult, setSearchResult] = useState(null);
+      const [loading, setLoading] = useState(true);
+      const [error, setError] = useState(null);
+
+      // Fetch leaderboard data on component mount
+      useEffect(() => {
+        fetchLeaderboard();
+      }, []);
+
+      const fetchLeaderboard = async () => {
+        try {
+          setLoading(true);
+          const response = await fetch(`${API_URL}/leaderboard`);
+          
+          if (!response.ok) {
+            throw new Error('Failed to load leaderboard');
+          }
+          
+          const data = await response.json();
+          setLeaderboardData(data);
+          setError(null);
+        } catch (err) {
+          console.error('Error loading leaderboard:', err);
+          setError('Unable to load leaderboard. Please try again later.');
+        } finally {
+          setLoading(false);
+        }
+      };
+
+      const handleSearch = async (e) => {
+        e.preventDefault();
+        
+        if (!searchQuery.trim()) {
+          alert('Please enter a player name');
+          return;
+        }
+
+        try {
+          const response = await fetch(`${API_URL}/player/search?name=${encodeURIComponent(searchQuery)}`);
+          
+          if (!response.ok) {
+            throw new Error('Player not found');
+          }
+          
+          const data = await response.json();
+          setSearchResult(data);
+        } catch (err) {
+          console.error('Error searching player:', err);
+          alert('Player not found. Please try a different name.');
+          setSearchResult(null);
+        }
+      };
+
+      const clearSearch = () => {
+        setSearchQuery('');
+        setSearchResult(null);
+      };
+
+      return (
+        <>
+          <section className="leaderboard-section" data-aos="fade-up">
+            <h1 data-aos="zoom-in" data-aos-delay="100">🏆 Leaderboard</h1>
+            <p className="subtitle" data-aos="fade-in" data-aos-delay="200">
+              Top Players in Math Duel Arena
+            </p>
+
+            <div className="leaderboard-container" data-aos="slide-up" data-aos-delay="300">
+              {loading && <p className="loading-message">Loading leaderboard...</p>}
+              
+              {error && <p className="error-message">{error}</p>}
+              
+              {!loading && !error && leaderboardData.length === 0 && (
+                <p className="no-data-message">No players yet. Be the first to play!</p>
+              )}
+              
+              {!loading && !error && leaderboardData.length > 0 && (
+                <table className="leaderboard-table">
+                  <thead>
+                    <tr>
+                      <th>Rank</th>
+                      <th>Player Name</th>
+                      <th>Total Score</th>
+                      <th>Games Played</th>
+                      <th>Avg Score</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {leaderboardData.map((player, index) => (
+                      <tr key={player.user_id} className={index < 3 ? `rank-${index + 1}` : ''}>
+                        <td>
+                          {index === 0 && '🥇'}
+                          {index === 1 && '🥈'}
+                          {index === 2 && '🥉'}
+                          {index > 2 && `#${index + 1}`}
+                        </td>
+                        <td className="player-name">{player.username}</td>
+                        <td>{player.total_score}</td>
+                        <td>{player.games_played}</td>
+                        <td>{parseFloat(player.average_score).toFixed(1)}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              )}
+            </div>
+          </section>
+
+          <div className="player-search-section" data-aos="fade-up" data-aos-delay="400">
+            <h2>🔍 Search Player Stats</h2>
+            <form onSubmit={handleSearch} className="search-form">
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Enter player name..."
+                className="search-input"
+              />
+              <button type="submit" className="search-button">Search</button>
+              {searchResult && (
+                <button type="button" onClick={clearSearch} className="clear-button">Clear</button>
+              )}
+            </form>
+
+            {searchResult && (
+              <div className="player-stats-result" data-aos="zoom-in">
+                <h3>Player Statistics</h3>
+                <div className="stats-grid">
+                  <div className="stat-item">
+                    <span className="stat-label">Player:</span>
+                    <span className="stat-value">{searchResult.username}</span>
+                  </div>
+                  <div className="stat-item">
+                    <span className="stat-label">Total Score:</span>
+                    <span className="stat-value">{searchResult.total_score || 0}</span>
+                  </div>
+                  <div className="stat-item">
+                    <span className="stat-label">Games Played:</span>
+                    <span className="stat-value">{searchResult.games_played || 0}</span>
+                  </div>
+                  <div className="stat-item">
+                    <span className="stat-label">Average Score:</span>
+                    <span className="stat-value">
+                      {searchResult.average_score ? parseFloat(searchResult.average_score).toFixed(1) : '0.0'}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        </>
+      );
+    }
+
+    // Render the app
+    ReactDOM.render(<Leaderboard />, document.getElementById('root'));
+
+    // Initialize AOS and particles after React renders
+    AOS.init({ duration: 1000, easing: 'ease-in-out', once: true });
+    
+    particlesJS('particles-js', {
+      particles: {
+        number: { value: 25 },
+        color: { value: ["#0fcece", "#e94560"] },
+        shape: { type: "circle" },
+        opacity: { value: 0.1 },
+        size: { value: 8 },
+        line_linked: { enable: true, distance: 150, color: "#0fcece", opacity: 0.05 },
+        move: { enable: true, speed: 1.5 }
+      },
+      interactivity: {
+        events: { onhover: { enable: true, mode: "grab" } },
+        modes: { grab: { distance: 140 } }
+      }
+    });
+  </script>
+
+  <script>
+    // Load navigation
+    fetch('nav.html')
+      .then(response => response.text())
+      .then(data => {
+        document.querySelector('.navbar').innerHTML = data;
+      });
+  </script>
 </body>
 </html>

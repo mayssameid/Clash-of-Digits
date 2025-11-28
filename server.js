@@ -17,9 +17,9 @@ app.use(express.static(path.join(__dirname)));
 // this creates a pool of reusable database connections for better performance
 // instead of opening/closing a new connection for every single request
 // for deployment: the code uses environment variables (process.env) so when i deploy
-// to a hosting platform, it can provide its own database credentials securely
+// to Railway, it can provide its own database credentials securely
 // for local development: if no environment variables are set, it uses the || operator
-// to fall back to my local database settings (localhost, root, my password, project2_db)
+// to fall back to my local database settings
 const pool = mysql.createPool({
   host: process.env.DB_HOST || 'localhost', 
   user: process.env.DB_USER || 'root', 
