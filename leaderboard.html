@@ -33,7 +33,10 @@
     const { useState, useEffect } = React;
     
     // API URL dynamically switches between local development and production
-    const API_URL = window.location.hostname === 'localhost' 
+    // Works with both Live Server (5500) and Node server (3000)
+    const API_URL = window.location.port === '5500'
+      ? 'http://localhost:3000/api'
+      : window.location.hostname === 'localhost' 
       ? 'http://localhost:3000/api' 
       : '/api';
 
@@ -77,7 +80,7 @@
           // Parse JSON response and update state
           const data = await response.json();
           setLeaderboardData(data); // Update leaderboard data state
-          setError(null); // Clear any previous errors
+          setError(null); // Clears any previous errors
         } catch (err) {
           console.error('Error loading leaderboard:', err);
           setError('Unable to load leaderboard. Please try again later.');
