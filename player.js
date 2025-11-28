@@ -1,6 +1,10 @@
 // this file connects to the back-end server to save user data
 // it handles creating users, game sessions, and storing info before starting the game
-const API_URL = 'http://localhost:3000/api';
+const API_URL = window.location.port === '5500'
+  ? 'http://localhost:3000/api'
+  : window.location.hostname === 'localhost' 
+  ? 'http://localhost:3000/api' 
+  : '/api';
 
 // creates a new user or gets existing user from database
 // this function sends the username to the server using fetch api

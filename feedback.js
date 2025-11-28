@@ -1,5 +1,9 @@
 
-const API_URL = 'http://localhost:3000/api';
+const API_URL = window.location.port === '5500'
+  ? 'http://localhost:3000/api'
+  : window.location.hostname === 'localhost' 
+  ? 'http://localhost:3000/api' 
+  : '/api';
 
 // fetch and display recent feedback from database
 async function loadRecentFeedback() {
