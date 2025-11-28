@@ -29,8 +29,11 @@ function displayFeedback(feedbackList) {
   feedbackList.forEach(feedback => {
     const stars = '★'.repeat(feedback.rating) + '☆'.repeat(5 - feedback.rating);
     const date = new Date(feedback.created_at).toLocaleDateString();
-    // Show actual comment from any of the feedback fields
-    const comment = feedback.liked || feedback.additional_comments || feedback.disliked || 'Thank you for your feedback!';
+    // Show actual comment - prioritize liked, then additional_comments, then disliked
+    const comment = feedback.liked || feedback.additional_comments || feedback.disliked;
+    
+    // Only show feedback if there's an actual comment
+    if (!comment) return;
     
     const feedbackHTML = `
       <div class="forum-post">
@@ -50,7 +53,10 @@ function addNewTestimonial(data) {
   if (!testimonialsContainer) return;
   
   // shows actual comment from any feedback field
-  const comment = data.like || data.additional || data.disliked || 'Thank you for your feedback!';
+  const comment = data.like || data.additional || data.disliked;
+  
+  // Only show if there's a comment
+  if (!comment) return;
   
   // making star rating display
   const stars = '★'.repeat(data.rating) + '☆'.repeat(5 - data.rating);
