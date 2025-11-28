@@ -4,7 +4,7 @@ by you. Enjoy the game! :p
 
 
 FRONT-End:
-• **Implemented React Components with Hooks** on Leaderboard page
+• Implemented React Components with Hooks on Leaderboard page
   - Used useState for managing leaderboard data, search query, and loading states
   - Used useEffect for fetching data from API on component mount
   - Implemented React props for component composition
@@ -21,12 +21,11 @@ FRONT-End:
 
 BACK-END:
 • Set up Node.js and Express server (server.js)
-• Implemented MySQL database with 5 tables
-• Created 10+ RESTful API endpoints
+• Implemented MySQL database with 4 tables (users, game_sessions, scores, feedback) and 1 view (leaderboard)
+• Created 8 RESTful API endpoints (POST/GET users, POST game-sessions, POST scores, POST feedback, GET feedback/recent, GET leaderboard, GET leaderboard/:userId)
 • Enabled CORS for cross-origin requests
 • Added connection pooling for efficient database access
 • Implemented error handling and validation
-• Added health check endpoint for monitoring
 
 
 EXTERNAL LIBRARIES:
